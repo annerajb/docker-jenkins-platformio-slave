@@ -4,9 +4,10 @@ MAINTAINER Kevin Delfour <kevin@sogilis.com>
 
 # Install pre-requisite
 # Make sure the package repository is up to date.
+RUN dpkg --add-architecture i386
 RUN apt-get update && \
     apt-get -y upgrade && \
-    apt-get install -y cppcheck openssh-server curl git
+    apt-get install -y cppcheck openssh-server curl git libc6:i386 libncurses5:i386 libstdc++6:i386
 
 # Install a basic SSH server
 RUN sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd
