@@ -30,8 +30,9 @@ VOLUME /usr/local/workspace
 
 # Positionning in worspace
 WORKDIR /usr/local/workspace
-RUN platformio platform install microchippic32
-RUN platformio init --board chipkit_cmod
+COPY testCode /usr/local/workspace/testCode
+
+RUN cd /usr/local/workspace/testCode && platformio run
 # Standard SSH port
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
